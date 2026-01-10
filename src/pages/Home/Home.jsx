@@ -1,24 +1,33 @@
-import React ,{useState} from 'react';
-import './Home.css'
+import React, { useState } from "react";
+import './Home.css';
 import Header from '../../components/Header/Header.jsx';
 import ExploreMenu from '../../components/ExploreMenu/ExploreMenu.jsx';
-// filepath: d:\food-app\frontend\src\pages\home\home.jsx
 import FoodDisplay from '../../components/FoodDisplay/FoodDisplay.jsx';
-import { AppDownload } from '../../components/AppDownload/AppDownload.jsx';
+import AppDownload from '../../components/AppDownload/AppDownload.jsx';
 
 
-
-export const Home = () => {
-  
-  const [category,setCategory] = useState("A11");
+const Home = () => {
+  const [category, setCategory] = useState("all"); // default category shows all
 
   return (
     <div>
-        <Header/>
+      {/* Give each section an ID for smooth scrolling */}
+      <section id="home">
+        <Header />
+      </section>
+
+      <section id="menu">
         <ExploreMenu category={category} setCategory={setCategory} />
         <FoodDisplay category={category} />
-        <AppDownload/>
+      </section>
+
+      <section id="mobile-app">
+        <AppDownload />
+      </section>
+
+     
     </div>
-  )
-}
+  );
+};
+
 export default Home;

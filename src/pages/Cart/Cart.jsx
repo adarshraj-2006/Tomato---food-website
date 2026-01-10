@@ -7,9 +7,14 @@ const Cart = () => {
   const { cartItems, food_list, removeFromCart, getTotalCartAmount } = useContext(StoreContext);
   const navigate = useNavigate();
 
+  const subtotal = getTotalCartAmount();
+  const deliveryFee = subtotal === 0 ? 0 : 2;
+  const total = subtotal + deliveryFee;
+
   return (
     <div className='cart'>
-      {/* Cart Items */}
+      
+      {/* Cart Items Section */}
       <div className="cart-items">
         <div className="cart-items-title">
           <p>Image</p>
@@ -21,8 +26,10 @@ const Cart = () => {
         </div>
         <hr />
 
+        {/* Render each cart item */}
         {food_list.map((item) => {
           if (cartItems[item._id] > 0) {
+            const quantity = cartItems[item._id];
             return (
               <React.Fragment key={item._id}>
                 <div className='cart-items-title cart-items-item'>
@@ -31,14 +38,9 @@ const Cart = () => {
                   </div>
                   <p>{item.name}</p>
                   <p>${item.price}</p>
-                  <p>{cartItems[item._id]}</p>
-                  <p>${item.price * cartItems[item._id]}</p>
-                  <p
-                    className="cross-btn"
-                    onClick={() => removeFromCart(item._id)}
-                  >
-                    X
-                  </p>
+                  <p>{quantity}</p>
+                  <p>${item.price * quantity}</p>
+                  <p className="cross-btn" onClick={() => removeFromCart(item._id)}>X</p>
                 </div>
                 <hr />
               </React.Fragment>
@@ -48,24 +50,29 @@ const Cart = () => {
         })}
       </div>
 
-      {/* Cart Totals and Checkout */}
+      {/* Cart Totals & Checkout Section */}
       <div className="cart-button">
+
         <div className="cart-total">
           <h2>Cart Totals</h2>
+
           <div className="cart-total-details">
             <p>Subtotal</p>
-            <p>${getTotalCartAmount()}</p>
+            <p>${subtotal}</p>
           </div>
           <hr />
+
           <div className="cart-total-details">
             <p>Delivery Fee</p>
-            <p>${getTotalCartAmount()===0?0:2}</p>
+            <p>${deliveryFee}</p>
           </div>
           <hr />
+
           <div className="cart-total-details">
             <p>Total</p>
-            <p>${getTotalCartAmount()===0?0:getTotalCartAmount() + 2}</p>
+            <p>${total}</p>
           </div>
+
           <button onClick={() => navigate('/order')}>PROCEED TO CHECKOUT</button>
         </div>
 
@@ -77,7 +84,9 @@ const Cart = () => {
             <button>Submit</button>
           </div>
         </div>
+
       </div>
+
     </div>
   );
 };

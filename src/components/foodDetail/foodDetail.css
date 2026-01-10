@@ -1,0 +1,78 @@
+.food-detail-page {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 5%;
+  display: block;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  margin-bottom: 30px;
+  font-size: 14px;
+  color: #666;
+}
+
+.breadcrumb a {
+  color: tomato;
+  text-decoration: none;
+}
+
+/* Main food section */
+.food-detail-container {
+  display: flex;
+  gap: 50px;
+  align-items: flex-start;
+  margin-bottom: 80px;
+}
+
+.food-detail-container img {
+  width: 380px;
+  border-radius: 15px;
+}
+
+.food-detail-info {
+  max-width: 500px;
+}
+
+.food-detail-info h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.food-detail-info p {
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.food-detail-info h2 {
+  color: tomato;
+}
+
+/* Sections */
+.section-title {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+/* Food lists */
+.food-detail-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 30px;
+  margin-bottom: 80px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .food-detail-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .food-detail-container img {
+    width: 100%;
+    max-width: 320px;
+  }
+}
